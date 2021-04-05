@@ -33,4 +33,18 @@ class AuthService{
       return false;
     }
   }
+
+  static Future<bool> login(String email,String password)async{
+    try{
+      //firebase 어뜨 인스턴스에서 사인우시 이메일 맨드 패스워드로 인증하기
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      return true; //성공시 리턴 트루를 반환하여 로그인하기
+    }catch(e){
+      print(e);
+      print("로그인에 문제");
+      return false;
+    }
+  }
+
+
 }

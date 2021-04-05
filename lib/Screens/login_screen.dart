@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_twitter/Service/auth_service.dart';
 import 'package:flutter_twitter/Widget/RoundedButton.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -9,6 +10,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String _email;
   String _password;
+  bool passview = false;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,17 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             SizedBox(height: 20,),
             TextField(
+              obscureText: passview ? false : true,
               decoration: InputDecoration(
+                suffixIcon: IconButton(
+                  icon: passview ?
+                  Icon(Icons.remove_red_eye_sharp):
+                  Icon(Icons.cancel),
+                onPressed: (){
+                    setState(() {
+                  passview = !passview;
+                    });
+                },),
                 hintText: 'Enter your Password',
               ),
               onChanged: (value){
@@ -45,7 +57,19 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             SizedBox(height: 40,),
 
-            RoundedButton(btnText: 'LOG IN',onBtnPressed: (){},),
+            RoundedButton(btnText: 'LOG IN',
+              onBtnPressed: ()async{
+                //Auth 서비스
+                //들어온 네임 이메일 패스워드가 없으면
+                //이메일 패스워드를 검증하여 로그인한다
+                bool isValid = await AuthService.login(_email, _password);
+                if(isValid){
+                  Navigator.pop(context);
+                }else{
+                  print('sumthind');
+                }
+              },
+            ),
           ],
         ),
       ),
