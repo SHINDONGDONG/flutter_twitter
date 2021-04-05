@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         builder:(context,snapshot) {
           if (snapshot.hasData) {
             //파이어베이스 어뜨 스테이트가 체인지되면 거기에 스냅샷 데이터가 있으면 피드스크린으로 이동
-            return FeedScreen();
+            return FeedScreen(currentUserId: snapshot.data.uid,); //커런트 아이디를 스냅샷 데이터 유아이디로 보내준다.
           } else {
             return WelcomeScreen();
           }

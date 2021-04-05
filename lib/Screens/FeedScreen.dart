@@ -11,6 +11,9 @@ import 'ProfileScreen.dart';
 import 'SearchScreen.dart';
 
 class FeedScreen extends StatefulWidget {
+  final String currentUserId;
+
+  const FeedScreen({Key key, this.currentUserId}) : super(key: key);
   @override
   _FeedScreenState createState() => _FeedScreenState();
 }
@@ -19,18 +22,16 @@ class _FeedScreenState extends State<FeedScreen> {
   //선택한 탭의 번호
   int _selectedTab = 0;
 
-  List<Widget> _feedScreens = [
-    HomeScreen(),
-    SearchScreen(),
-    NotificationsScreen(),
-    ProfileScreen(),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //리스트의 엘리먼트 at 인덱스를 고를수이:ㅆ음 *****************
-      body: _feedScreens.elementAt(_selectedTab),
+      body: [
+        HomeScreen(),
+        SearchScreen(),
+        NotificationsScreen(),
+        ProfileScreen(),
+      ].elementAt(_selectedTab),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
         child: Image.asset("assets/tweet.png"),
@@ -50,7 +51,7 @@ class _FeedScreenState extends State<FeedScreen> {
           });
         },
         //액티브컬러
-        activeColor: kPrimaryColor,
+        activeColor: kTweeterColor,
         currentIndex: _selectedTab, //꼭 지정해줘야 탭바가움직임
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home_outlined)),
