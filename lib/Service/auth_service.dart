@@ -22,6 +22,10 @@ class AuthService{
             'name' : name,
             'email' : email,
             'profilePicture':'',
+            'coverimage' : '',
+            'bio' : '',
+            
+            //커버이미지와 bio를 추가
           }
         );
         return true;
