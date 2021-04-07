@@ -1,6 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 const kTweeterColor = Color(0xff00acee);
 
@@ -8,10 +8,10 @@ const kTweeterColor = Color(0xff00acee);
 final _fireStore = FirebaseFirestore.instance;
 
 //users의 Ref 참조문서 (콜렉션 users 테이블 선언)
-final usersRef = _fireStore.collection("users");
+final usersRef = _fireStore.collection('users');
 
 
 //팔로워의 정보를 담은 테이블
-final followersRef = _fireStore.collection("followers");
+final followersRef = _fireStore.collection('followers');
 //팔로잉 한 유저 정보를 담은 테이블
-final followingsRef = _fireStore.collection("followings");
+final followingRef = _fireStore.collection("following");

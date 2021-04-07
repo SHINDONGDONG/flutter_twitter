@@ -1,9 +1,6 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter/constants.dart';
-
+import 'file:///C:/src/flutterwork/flutter_twitter/lib/Constatns/constants.dart';
 import 'CreateTweeteScreen.dart';
 import 'HomeScreen.dart';
 import 'NotificationsScreen.dart';
@@ -13,7 +10,7 @@ import 'SearchScreen.dart';
 class FeedScreen extends StatefulWidget {
   final String currentUserId;
 
-  const FeedScreen({Key key, this.currentUserId}) : super(key: key);
+  const FeedScreen({Key key, this.currentUserId,}) : super(key: key);
   @override
   _FeedScreenState createState() => _FeedScreenState();
 }

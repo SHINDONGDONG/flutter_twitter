@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter/Service/auth_service.dart';
 import 'package:flutter_twitter/Widget/RoundedButton.dart';
-import 'package:flutter_twitter/constants.dart';
+import 'file:///C:/src/flutterwork/flutter_twitter/lib/Constatns/constants.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
