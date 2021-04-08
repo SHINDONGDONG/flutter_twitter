@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
 const kTweeterColor = Color(0xff00acee);
-
+const kButtonColor = Color(0xff00acee);
 //파이어 스토어 (테이블 인스턴스를 선언)
 final _fireStore = FirebaseFirestore.instance;
 

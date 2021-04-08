@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter/Service/auth_service.dart';
 import 'package:flutter_twitter/Widget/RoundedButton.dart';
-import 'file:///C:/src/flutterwork/flutter_twitter/lib/Constatns/constants.dart';
+import 'package:flutter_twitter/Constatns/constants.dart';
 
 class RegistationScreen extends StatefulWidget {
   @override

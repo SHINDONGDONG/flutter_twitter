@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'file:///C:/src/flutterwork/flutter_twitter/lib/Constatns/constants.dart';
+import 'package:flutter_twitter/Constatns/constants.dart';
 
 class DatabaseServicese {
   static Future<int> followersNum(String userId) async {

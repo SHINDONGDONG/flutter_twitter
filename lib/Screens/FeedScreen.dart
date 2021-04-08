@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/src/flutterwork/flutter_twitter/lib/Constatns/constants.dart';
-import 'CreateTweeteScreen.dart';
+import 'package:flutter_twitter/Constatns/constants.dart';
 import 'HomeScreen.dart';
 import 'NotificationsScreen.dart';
 import 'ProfileScreen.dart';
@@ -34,18 +33,7 @@ class _FeedScreenState extends State<FeedScreen> {
           visitedUserId: widget.currentUserId,
         ),
       ].elementAt(_selectedTab),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
-        child: Image.asset("assets/tweet.png"),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CreateTweeteScreen(),
-            ),
-          );
-        },
-      ),
+
       bottomNavigationBar: CupertinoTabBar(
         onTap: (index) {
           setState(() {

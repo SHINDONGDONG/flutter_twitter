@@ -5,10 +5,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class UserModel {
   String id;
   String name;
-  String profilePicture="";
+  String profilePicture;
   String email;
   String bio;
-  String coverImage ="";
+  String coverImage;
 
   UserModel(
       {this.id,
@@ -27,7 +27,7 @@ class UserModel {
       email: doc.data()['email'],
       profilePicture:doc.data()['profilePicture'],
       bio: doc.data()['bio'],
-      coverImage: doc.data()['coverImage'],
+      coverImage: doc.data()['coverimage'],
     );
   }
 
