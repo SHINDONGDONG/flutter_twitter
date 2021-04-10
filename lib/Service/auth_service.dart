@@ -6,6 +6,10 @@ class AuthService{
   static final _firestore = FirebaseFirestore.instance; //파이어 스토어( 데이터베이스 관한것)
 
 
+  static bool signOut(){
+    _auth.signOut();
+  }
+
    //로그인 퓨처 메소드를 만들어준다.
   static Future<bool> signUp(String name,String email,String password)async{
     try{

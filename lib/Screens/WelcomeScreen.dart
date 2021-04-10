@@ -23,7 +23,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               Column(
                 children: [
                   Image.asset("assets/logo.png",width: 200,height: 200,),
-                  Text('See What\'s happensn the  righe now ',style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+                  Text('어서오세요',style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
                 ],
               ),
               Column(

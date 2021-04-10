@@ -12,7 +12,7 @@ class _RegistationScreenState extends State<RegistationScreen> {
   String _email;
   String _password;
   String _name;
-  bool passview = false;
+  bool _passview = false;
 
   @override
   Widget build(BuildContext context) {
@@ -48,14 +48,18 @@ class _RegistationScreenState extends State<RegistationScreen> {
             ),
             SizedBox(height: 20,),
             TextField(
-              obscureText: passview ? true : false,
+              obscureText: _passview ? false:true,
               decoration: InputDecoration(
                 suffixIcon: IconButton(
-                  icon : passview ? Icon(Icons.no_cell) :
-                  Icon(Icons.remove_red_eye_sharp),
                   onPressed: (){
-                  passview = !passview;
-                },),
+                    setState(() {
+                      _passview = !_passview;
+                    });
+                  },
+                  icon: _passview ?
+                    Icon(Icons.remove_red_eye):
+                    Icon(Icons.visibility_off_rounded),
+                ),
                 hintText: 'Enter your Password',
               ),
               onChanged: (value){

@@ -27,11 +27,11 @@ class _FeedScreenState extends State<FeedScreen> {
         SearchScreen(),
         NotificationsScreen(),
         ProfileScreen(
-          //프로필 스크린에 당연히 커런트아이디는 커런트ID,
-          //방문 userid도 커런트 id
-          currentUserId: widget.currentUserId,
-          visitedUserId: widget.currentUserId,
-        ),
+    //프로필 스크린에 당연히 커런트아이디는 커런트ID,
+    //방문 userid도 커런트 id
+    currentUserId: widget.currentUserId,
+    visitedUserId: widget.currentUserId,
+    ),
       ].elementAt(_selectedTab),
 
       bottomNavigationBar: CupertinoTabBar(

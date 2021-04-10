@@ -43,8 +43,8 @@ class _LoginScreenState extends State<LoginScreen> {
               decoration: InputDecoration(
                 suffixIcon: IconButton(
                   icon: passview ?
-                  Icon(Icons.visibility_off_rounded):
-                  Icon(Icons.remove_red_eye_sharp),
+                  Icon(Icons.remove_red_eye_sharp):
+                  Icon(Icons.visibility_off_rounded),
                 onPressed: (){
                     setState(() {
                   passview = !passview;

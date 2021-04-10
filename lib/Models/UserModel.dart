@@ -8,7 +8,7 @@ class UserModel {
   String profilePicture;
   String email;
   String bio;
-  String coverImage;
+  String coverimage;
 
   UserModel(
       {this.id,
@@ -16,18 +16,18 @@ class UserModel {
       this.profilePicture,
       this.email,
       this.bio,
-      this.coverImage});
+      this.coverimage});
 
   //항상 클래스의 새 인스턴스를 생성하지는 않는 생성자를 구현할 때는 factory 키워드를 사용 바랍니다.
   //싱글톤 패턴
    factory UserModel.fromDoc(DocumentSnapshot doc){
     return UserModel(
       id:doc.id,
-      name: doc.data()['name'],
-      email: doc.data()['email'],
-      profilePicture:doc.data()['profilePicture'],
-      bio: doc.data()['bio'],
-      coverImage: doc.data()['coverimage'],
+      name: doc['name'],
+      email: doc['email'],
+      profilePicture:doc['profilePicture'],
+      bio: doc['bio'],
+      coverimage: doc['coverimage'],
     );
   }
 

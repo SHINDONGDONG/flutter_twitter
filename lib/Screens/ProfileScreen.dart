@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_twitter/Models/UserModel.dart';
 import 'package:flutter_twitter/Service/DatabaseServicese.dart';
 import 'package:flutter_twitter/Constatns/constants.dart';
+import 'package:flutter_twitter/Service/auth_service.dart';
+import 'package:get/get.dart';
+
+import 'EditProfileScreen.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String currentUserId;
@@ -145,11 +149,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 150,
                     decoration: BoxDecoration(
                       color: kTweeterColor,
-                      image: userModel.coverImage.isEmpty
+                      image: userModel.coverimage.isEmpty
                           ? null
                           : DecorationImage(
                               fit: BoxFit.cover,
-                              image: NetworkImage(userModel.coverImage)),
+                              image: NetworkImage(userModel.coverimage)),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
@@ -176,7 +180,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ];
                             },
                             //선택이 되어있으면 선택된아이템을 selectedItem에 넣는다
-                            onSelected: (selectedItem) {},
+                            onSelected: (selectedItem) {
+                              if(selectedItem == 'logout'){
+                                return AuthService.signOut();
+                              }
+                            },
                           )
                         ],
                       ),
@@ -200,22 +208,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               AssetImage('assets/placeholder.png') :
                                 NetworkImage(userModel.profilePicture)
                               ,),
-                            Container(
-                              height: 35,
-                              width: 100,
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.white,
-                                border: Border.all(color: Color(0xff00acee)),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Edit',
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    color: Color(0xff00acee),
-                                    fontWeight: FontWeight.bold,
+                            GestureDetector(
+                              onTap: () {
+                                Get.to(EditProfileScreen(user: userModel,));
+                              },
+                              child: Container(
+                                height: 35,
+                                width: 100,
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white,
+                                  border: Border.all(color: Color(0xff00acee)),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Edit',
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      color: Color(0xff00acee),
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
