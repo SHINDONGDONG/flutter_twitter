@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_twitter/Constatns/constants.dart';
+import 'package:flutter_twitter/Models/UserModel.dart';
 
 class DatabaseServicese {
   static Future<int> followersNum(String userId) async {
@@ -16,5 +17,15 @@ class DatabaseServicese {
     QuerySnapshot followingSnapshot =
       await followingRef.doc(userId).collection("userFollowing").get();
     return followingSnapshot.docs.length; //팔로잉 스냅샷 독 랭쓰를 (레코드수) 리턴
+  }
+
+  //updateUserdata 업데이트함
+  static void updateUserData(UserModel userModel){
+    usersRef.doc(userModel.id).update({
+      'name' : userModel.name,
+      'bio' : userModel.bio,
+      'profilePicture' : userModel.profilePicture,
+      'coverimage' : userModel.coverimage,
+    });
   }
 }

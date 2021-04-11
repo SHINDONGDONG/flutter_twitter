@@ -122,7 +122,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   // newUserrr = Userr.fromDocument(doc, _docdata);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return SafeArea(
       child: Scaffold(
         body: FutureBuilder<DocumentSnapshot>(
@@ -130,8 +130,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             //snapshot이 없을경우에는
             if (!snapshot.hasData) {
-              print("Snapshot : ${usersRef.doc(widget.visitedUserId).get()}");
-              print("data : ${snapshot.data.data()}");
               return Center(
                 child: CircularProgressIndicator(
                   //돌아가는 컬러가
@@ -140,7 +138,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               );
             } else {
               //스냅샷 데이터가 있으면 UserModel에 Usermodel에 스냅샷 데이터를 넣는다.
-              UserModel userModel = UserModel.fromDoc(snapshot.data);
+              UserModel userModel =UserModel.fromDoc(snapshot.data);
+              print('userId : ' + userModel.id);
               return ListView(
                 physics: const BouncingScrollPhysics(
                     parent: AlwaysScrollableScrollPhysics()),
@@ -209,8 +208,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 NetworkImage(userModel.profilePicture)
                               ,),
                             GestureDetector(
-                              onTap: () {
-                                Get.to(EditProfileScreen(user: userModel,));
+                              onTap: () async{
+                               await Get.to(EditProfileScreen(user: userModel,));
                               },
                               child: Container(
                                 height: 35,

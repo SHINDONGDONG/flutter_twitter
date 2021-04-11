@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 
 const kTweeterColor = Color(0xff00acee);
@@ -15,3 +16,7 @@ final usersRef = _fireStore.collection('users');
 final followersRef = _fireStore.collection('followers');
 //팔로잉 한 유저 정보를 담은 테이블
 final followingRef = _fireStore.collection("following");
+
+
+//Storage의 인스턴스
+final storageRef = FirebaseStorage.instance.ref();
