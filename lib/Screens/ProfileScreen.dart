@@ -12,7 +12,6 @@ import 'EditProfileScreen.dart';
 class ProfileScreen extends StatefulWidget {
   final String currentUserId;
   final String visitedUserId;
-
   const ProfileScreen({Key key, this.currentUserId, this.visitedUserId})
       : super(key: key);
 
@@ -23,7 +22,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   int _followersCount = 0;
   int _followingCount = 0;
-
+  bool _isFollowing = false;
   //세그멘트 컨트롤 밸류를 지정해주고
   int _profileSegmentedValue = 0;
   //맵 형식으로 프로파일 세그멘트밸류를 키갑스로 받고 위젯으로 밸류를 돌려준다
@@ -108,6 +107,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
+  followOrUnFollow(){
+    if(_isFollowing){
+      unFollowUser();
+    }else{
+      followUser();
+    }
+  }
+  unFollowUser(){
+   DatabaseServicese.unFollowUser(widget.currentUserId,widget.visitedUserId);
+    setState(() {
+      _isFollowing=false;
+      _followersCount--;
+    });
+  }
+  followUser(){
+   DatabaseServicese.followUser(widget.currentUserId,widget.visitedUserId);
+    setState(() {
+      _isFollowing=true;
+      _followersCount++;
+    });
+  }
+  setupIsFollowing()async{
+    bool isFollowingThisUser = await DatabaseServicese.isFollowingUser(widget.currentUserId,widget.visitedUserId);
+    setState(() {
+      _isFollowing = isFollowingThisUser;
+    });
+  }
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -115,6 +143,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     //initstate로 초기 실행시 1회 실행하게만듬.
     getFollowingCount();
     getFollowersCount();
+    setupIsFollowing();
   }
 
   // DocumentSnapshot doc = await usersRef.doc(u.uid).get();
@@ -203,11 +232,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           children: [
                             //서클아바타에 userModel.profilePicture에 데이터가 있으면 가지고오고 없으면 기본이미지를 출력
                             CircleAvatar(radius: 45,
+                              backgroundColor: Colors.white,
                             backgroundImage: userModel.profilePicture.isEmpty ?
                               AssetImage('assets/placeholder.png') :
                                 NetworkImage(userModel.profilePicture)
                               ,),
-                            GestureDetector(
+                            widget.currentUserId == widget.visitedUserId ? GestureDetector(
                               onTap: () async{
                                await Get.to(EditProfileScreen(user: userModel,));
                               },
@@ -231,7 +261,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                               ),
-                            ),
+                            )
+                                :GestureDetector(
+                              onTap: followOrUnFollow(),
+                              child: Container(
+                                height: 35,
+                                width: 100,
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: _isFollowing ? Colors.white : kTweeterColor,
+                                  border: Border.all(color: Color(0xff00acee)),
+                                ), 
+                                child: Center(
+                                  child: Text(
+                                    _isFollowing ? 'Following' : 'Follow',
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      color: Color(0xff00acee),
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
                           ],
                         ),
                         SizedBox(height: 10,),

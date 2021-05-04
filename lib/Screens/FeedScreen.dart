@@ -24,7 +24,7 @@ class _FeedScreenState extends State<FeedScreen> {
       //리스트의 엘리먼트 at 인덱스를 고를수이:ㅆ음 *****************
       body: [
         HomeScreen(),
-        SearchScreen(),
+        SearchScreen(currentUserId:widget.currentUserId,),
         NotificationsScreen(),
         ProfileScreen(
     //프로필 스크린에 당연히 커런트아이디는 커런트ID,
